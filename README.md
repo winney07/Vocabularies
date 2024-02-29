@@ -409,6 +409,8 @@ upstream, see 'push.autoSetupRemote' in 'git help config'.
 git push --set-upstream origin hexo
 ```
 
+> 以后的推送操作中，直接使用 `git push` 而不需要指定远程仓库和分支了
+
 方法2：也可以通过配置 `push.default` 来自动设置跟踪分支
 
 ```
