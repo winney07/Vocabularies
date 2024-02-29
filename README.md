@@ -1,4 +1,4 @@
-### 创建项目
+## 创建项目
 
 ```
 hexo init Vocabularies
@@ -12,31 +12,34 @@ cd Vocabularies
 cnpm i
 ```
 
-
-
-#### 使用[Tranquilpeak](https://github.com/LouisBarranqueiro/hexo-theme-tranquilpeak/tree/main)主题
+## 使用[Tranquilpeak](https://github.com/LouisBarranqueiro/hexo-theme-tranquilpeak/tree/main)主题
 
 1. Download the latest [version](https://github.com/LouisBarranqueiro/hexo-theme-tranquilpeak/archive/main.zip)
+
 2. Rename the folder in `tranquilpeak` and place it in the `themes` folder of your Hexo blog
+
 3. Modify the theme in Hexo configuration file (`_config.yml`) by setting `theme` variable to `tranquilpeak`
+
 4. Go to the `tranquilpeak` folder and run `npm install && npm run prod`
+
 5. Read [documentation](https://github.com/LouisBarranqueiro/hexo-theme-tranquilpeak/blob/main/DOCUMENTATION.md) to configure the theme.
 
-切换到`H:\Github\Vocabularies\themes\tranquilpeak`：
+    
 
-```
-cnpm i
-```
+    
 
-```
-npm run prod
-```
+1. 切换到`H:\Github\Vocabularies\themes\tranquilpeak`：
+    ```
+    cnpm i
+    ```
+    ```
+    npm run prod
+    ```
 
-切换到`H:\Github\Vocabularies`本地预览：
-
-```
-hexo s
-```
+2. 切换到`H:\Github\Vocabularies`本地预览：
+     ```
+     hexo s
+     ```
 
 #### 修改主题相关内容
 
@@ -118,7 +121,7 @@ This page will be reachable at: `/all-archives`. On this page, users will be abl
 
 2. 在项目目录（`H:\Github\Vocabularies`）执行`hexo g`，把生成的`public`目录里的内容放到网站目录
 
-### 修改样式表的路径为相对路径
+### 【修改样式表的路径为相对路径--可忽略】
 
 根据控制台显示的`Running "replace:linker" (replace) task`，找到`H:\Github\Vocabularies\themes\tranquilpeak\tasks\config\sails-linker.js`修改生成css的路径
 
@@ -213,7 +216,7 @@ link.absolute_url = 'https://winney07.github.io/Vocabularies' + link.url;
 
 > 以上修改相对路径，是针对将项目部署到GitHub仓库（非gitpages原始仓库），使用GitHub链接访问而做的
 
-### 部署到GitHub
+## 部署到GitHub
 
 1. 修改根目录的`_config.yml`
 
@@ -234,14 +237,14 @@ link.absolute_url = 'https://winney07.github.io/Vocabularies' + link.url;
     hexo d
     ```
 
-    报错：报错：
+    报错：
 
     ```
     INFO  Validating config
     ERROR Deployer not found: git
     ```
 
-    解决方案：
+    **解决：**
 
     ```
     cnpm i --save hexo-deployer-git
@@ -260,90 +263,124 @@ link.absolute_url = 'https://winney07.github.io/Vocabularies' + link.url;
 6. 将`Enforce HTTPS `勾选
 
 6. 新建自定义域名时：
-
-
+    ```
     1. 记录类型：CNAME
     2. 主机记录：vocabularies
     3. 记录值：winney07.github.io（填写cname指向的域名）
+    ```
 
-7. https://vocabularies.winney07.cn/
+
+​        https://vocabularies.winney07.cn/
 
 ### 将项目源文件提交到GitHub
 
-创建分支hexo（用于存放博客的源文件） [参考教程](https://www.cnblogs.com/kaerxifa/p/11045573.html)
+1. ### 创建分支hexo（用于存放博客的源文件） [参考教程](https://www.cnblogs.com/kaerxifa/p/11045573.html)
 
-```
-创建hexo分支：
-$ git branch hexo
+    ```
+    git branch hexo
+    ```
 
-查看当前所有分支：
-$ git branch
-  hexo
-* main
+    终端报错：`fatal: not a git repository (or any of the parent directories): .git`
 
-推送到远程服务器：git push origin 分支名称
-git push origin hexo
+    **解决：**
 
-Create a pull request for 'hexo' on GitHub by visiting(在github仓库中就可以看到hexo分支)
-```
+    1. 创建`.git`目录
 
-执行`git branch hexo`，命令，终端报错：`fatal: not a git repository (or any of the parent directories): .git`
+        ```
+        git init    // **如果在一个没有.git文件夹的目录下报上面这个错**，就执行这句
+        ```
 
-**如果在一个没有.git文件夹的目录下报上面这个错**，就执行：
+    2. 再重新创建新分支
 
-```
-git init
-```
+        ```
+        git checkout -b new-branch    // 可以使用这个命令也可以使用原来的
+        ```
 
-#### 创建新分支
+2. ### 将内容从工作目录添加到暂存区
 
-```
-git checkout -b new-branch
-```
+    ```
+    git add .
+    ```
 
-提交源代码到新分支
+    执行`git add.`代码，报错：
 
-```
-git add .
-```
+    ```
+    warning: adding embedded git repository: .deploy_git
+    hint: You've added another git repository inside your current repository.
+    hint: Clones of the outer repository will not contain the contents of
+    hint: the embedded repository and will not know how to obtain it.
+    hint: If you meant to add a submodule, use:
+    hint:
+    hint:   git submodule add <url> .deploy_git
+    hint:
+    hint: If you added this path by mistake, you can remove it from the
+    hint: index with:
+    hint:
+    hint:   git rm --cached .deploy_git
+    hint:
+    hint: See "git help submodule" for more information.
+    ```
 
-执行`git add.`代码，报错：
+    **解决：**
 
-```
-warning: adding embedded git repository: .deploy_git
-hint: You've added another git repository inside your current repository.
-hint: Clones of the outer repository will not contain the contents of
-hint: the embedded repository and will not know how to obtain it.
-hint: If you meant to add a submodule, use:
-hint:
-hint:   git submodule add <url> .deploy_git
-hint:
-hint: If you added this path by mistake, you can remove it from the
-hint: index with:
-hint:
-hint:   git rm --cached .deploy_git
-hint:
-hint: See "git help submodule" for more information.
-```
+    1. 要在项目根目录添加`.gitignore`：
 
-解决方法：
+       ```
+       .DS_Store
+       Thumbs.db
+       db.json
+       *.log
+       node_modules/
+       public/
+       .deploy*/        // 不要把deploy相关的提交
+       ```
 
-1. 要在项目根目录添加`.gitignore`：
+    2. 撤销刚才的添加
 
-   ```
-   .DS_Store
-   Thumbs.db
-   db.json
-   *.log
-   node_modules/
-   public/
-   .deploy*/        // 不要把deploy相关的提交
-   ```
+       ```
+       git reset
+       ```
 
-2. 撤销刚才的本地提交
+    3. 重新提交代码
 
-   ```
-   git reset
-   ```
+       ```
+       git add .
+       ```
 
-   
+3. ### 将更改记录（提交）到存储库（新分支）
+
+    ```
+    git commit -m 'vocabularies源码'
+    ```
+
+4. ### 推送到新分支到GitHub
+
+    ```
+    git push origin hexo
+    ```
+
+    报错：
+
+    ```
+    fatal: 'origin' does not appear to be a git repository
+    fatal: Could not read from remote repository.
+    
+    Please make sure you have the correct access rights
+    and the repository exists.
+    ```
+
+    **解决：**
+
+    1. 确认本地仓库中是否已经配置了名为 `origin` 的远程仓库
+
+       ```
+       git remote -v
+       ```
+
+    2. 如果您没有看到名为 `origin` 的远程仓库，您需要将其添加到本地仓库中：
+
+       ```
+       git remote add origin git@github.com:winney07/Vocabularies.git
+       ```
+
+    3. 添加远程仓库后，再次尝试执行 `git push origin hexo` 命令
