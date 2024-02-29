@@ -384,3 +384,34 @@ link.absolute_url = 'https://winney07.github.io/Vocabularies' + link.url;
        ```
 
     3. 添加远程仓库后，再次尝试执行 `git push origin hexo` 命令
+
+### 当前分支 `hexo` 没有与远程分支建立关联
+
+当本地修改了内容，执行`git add .`，`git commit -m '修改备注'`，`git push` ，会报这样的错：
+
+```
+fatal: The current branch hexo has no upstream branch.
+To push the current branch and set the remote as upstream, use
+
+    git push --set-upstream origin hexo
+
+To have this happen automatically for branches without a tracking
+upstream, see 'push.autoSetupRemote' in 'git help config'.
+```
+
+> **这个错误表明当前分支 `hexo` 没有与远程分支建立关联**
+
+
+
+方法1：
+
+```
+git push --set-upstream origin hexo
+```
+
+方法2：也可以通过配置 `push.default` 来自动设置跟踪分支
+
+```
+git config push.default current
+```
+
